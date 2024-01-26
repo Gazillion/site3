@@ -1,0 +1,84 @@
+{# templates/list/index.html.twig #} 
+{% extends 'base.html.twig' %} 
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-light mb-3 mt-3">
+        <div class="card-body">
+          <div class="card-header">POLICIES <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">Create</button></div>
+            <AmpContent>
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Type</th>
+                        <th>Effec_D</th>
+                        <th>Expir_D</th>
+                        <th>Holder</th>
+                        <th>Divers</th>
+                        <th>Vehicles</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for key, item in companies %}
+                    
+                    <tr>
+                        <td>{{ item.ID  }}</td>
+                        <td>{{ item.PolicyType  }}</td>
+                        <td>{{ item.PolicyEffectiveDate  }}</td>
+                        <td>{{ item.PolicyExpirationDate  }}</td>
+                        <td>{{ item.PolicyHolder  }}</td>
+                        <td>{{ item.PolicyHolder  }}</td>
+                        <td>{{ item.PolicyHolder  }}</td>
+                        <td>Active</td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" data-id="1234567890" data-toggle="modal" data-target="#myView">View</button>
+                                <button type="button" class="btn btn-warning" data-id="1234567890" data-toggle="modal" data-target="#myEdit">Edit</button>
+                                <button type="button" class="btn btn-danger button-click" data-id="1234567890" data-toggle="modal" data-target="#myDelete">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                         <th>No</th>
+                        <th>Type</th>
+                        <th>Effective D</th>
+                        <th>Expiration D</th>
+                        <th>Holder</th>
+                        <th>Divers</th>
+                        <th>Vehicles</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>      
+            </NonAmpContent>    
+    </div>
+  </div>
+</div>
+        
+    {{ include('_modal.html.twig', {
+                modalTitle: 'Add a new Policy',
+     }) }}
+     
+    {{ include('_modalDelete.html.twig', {
+                modalTitle: 'Delete Policy',
+     }) }} 
+     
+     {{ include('_modalEdit.html.twig', {
+                modalTitle: 'Edit Policy',
+     }) }}
+     
+     {{ include('_modalView.html.twig', {
+                modalTitle: 'View Policy',
+     }) }}
+            
+{% endblock %}
