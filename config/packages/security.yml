@@ -1,0 +1,27 @@
+# config/packages/security.yaml
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            form_login:
+                login_path: app_login
+                check_path: app_login
+            logout:
+                path: app_logout
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
